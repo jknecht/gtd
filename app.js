@@ -1,4 +1,5 @@
 var express = require('express'),
+  ejsEngine = require('ejs-locals'),
   passport = require('passport'),
   util = require('util'),
   oauthConfig = require('./config/oauth_providers'),
@@ -58,6 +59,7 @@ var app = express();
 
 // configure Express
 app.configure(function() {
+  app.engine("ejs", ejsEngine);
   app.set('views', __dirname + '/views');
   app.set('view engine', 'ejs');
   app.use(express.logger());
