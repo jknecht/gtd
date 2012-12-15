@@ -1,10 +1,9 @@
-var express = require('express')
-  , passport = require('passport')
-  , util = require('util')
-  , TwitterStrategy = require('passport-twitter').Strategy;
+var express = require('express'),
+  passport = require('passport'),
+  util = require('util'),
+  oauthConfig = require('./config/oauth_providers'),
+  TwitterStrategy = require('passport-twitter').Strategy;
 
-var TWITTER_CONSUMER_KEY = "za5symtbN5r8fM7NzbkTg";
-var TWITTER_CONSUMER_SECRET = "GAHk32I20BZnOLp8JIUBkbXoX930h7wf6N0FbJdYZ0s";
 var PORT = process.env.PORT || 5000;
 var BASE_URL = process.env.NODE_ENV === 'production' ? "http://gtd.jeffknecht.com" : "http://localhost:" + PORT;
 
@@ -29,8 +28,8 @@ passport.deserializeUser(function(obj, done) {
 // credentials (in this case, a token, tokenSecret, and Twitter profile), and
 // invoke a callback with a user object.
 passport.use(new TwitterStrategy({
-    consumerKey: TWITTER_CONSUMER_KEY,
-    consumerSecret: TWITTER_CONSUMER_SECRET,
+    consumerKey: oauthConfig.twitter.consumerKey,
+    consumerSecret: oauthConfig.twitter.consumerSecret,
     callbackURL: BASE_URL + "/auth/twitter/callback"
   },
   function(token, tokenSecret, profile, done) {
