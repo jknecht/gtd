@@ -20,8 +20,9 @@ module.exports.setup = function(app) {
 				context: req.body.context,
 				username: req.user.username
 			});
-			action.save();
-			res.send(action);
+			action.save(function(err, action) {
+				res.send(action);
+			});
 		}
 	});
 };
