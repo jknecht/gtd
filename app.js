@@ -2,10 +2,16 @@ var express = require('express'),
   passport = require('passport'),
   util = require('util'),
   oauthConfig = require('./config/oauth_providers'),
-  TwitterStrategy = require('passport-twitter').Strategy;
+  TwitterStrategy = require('passport-twitter').Strategy,
+  mongoose = require('mongoose'),
+  api = require('./app/api');
 
 var PORT = process.env.PORT || 5000;
 var BASE_URL = process.env.NODE_ENV === 'production' ? "http://gtd.jeffknecht.com" : "http://localhost:" + PORT;
+var MONGO_URL = process.env.NODE_ENV === 'production' ? "mongodb://gtd.jeffknecht.com" : "mongodb://localhost/gtd";
+
+mongoose.connect(MONGO_URL);
+
 
 // Passport session setup.
 // To support persistent login sessions, Passport needs to be able to
@@ -108,6 +114,8 @@ app.get('/logout', function(req, res){
   req.logout();
   res.redirect('/');
 });
+
+api.setup(app);
 
 app.listen(PORT);
 
