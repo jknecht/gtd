@@ -9,7 +9,7 @@ var express = require('express'),
 
 var PORT = process.env.PORT || 5000;
 var BASE_URL = process.env.NODE_ENV === 'production' ? "http://gtd.jeffknecht.com" : "http://localhost:" + PORT;
-var MONGO_URL = process.env.NODE_ENV === 'production' ? "mongodb://gtd.jeffknecht.com" : "mongodb://localhost/gtd";
+var MONGO_URL = process.env.NODE_ENV === 'production' ? "mongodb://gtdapp:gtdapppass12152012@linus.mongohq.com:10026/app10073166" : "mongodb://localhost/gtd";
 
 mongoose.connect(MONGO_URL);
 
