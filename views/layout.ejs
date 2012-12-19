@@ -18,7 +18,27 @@
 			</p>
 		<% } %>
 		<%- body %>
-			<script src="js/jquery-1.8.3.min.js"></script>
-			<script src="js/bootstrap.min.js"></script>
+		<script src="js/require.js"></script>
+		<script>
+		require.config({
+			baseUrl: 'js',
+			paths: {
+				'jquery': 'jquery-1.8.3.min'
+			},
+			shim: {
+				'bootstrap': {
+					deps: ['jquery']
+				},
+				'backbone': {
+					deps: ['underscore', 'json2', 'jquery'],
+					exports: 'Backbone'
+				},
+				'handlebars': {
+					exports: 'Handlebars'
+				}
+			}
+		});
+		</script>
+		<%- scripts %>
 	</body>
 </html>

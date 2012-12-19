@@ -17,7 +17,7 @@ module.exports.setup = function(app) {
 		} else {
 			var action = new NextAction({
 				title: req.body.title,
-				context: req.body.context,
+				contexts: req.body.contexts.split(),
 				username: req.user.username
 			});
 			action.save(function(err, action) {

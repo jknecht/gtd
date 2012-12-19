@@ -4,7 +4,7 @@ var mongoose = require('mongoose'),
 var nextActionSchema = new Schema({
 	username: String,
 	title: String,
-	context: String,
+	contexts: [],
 	status: String		// not_started, in_progress, waiting, done
 });
 
